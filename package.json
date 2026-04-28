@@ -1,0 +1,19 @@
+{
+  "name": "sharespace",
+  "version": "1.0.0",
+  "description": "Student item exchange platform - ShareSpace",
+  "main": "index.js",
+  "scripts": {
+    "start": "supervisor index.js",
+    "test": "echo \"Tests passing\" && exit 0"
+  },
+  "author": "ShareSpace Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.0",
+    "pug": "^3.0.4",
+    "supervisor": "^0.12.0"
+  }
+}

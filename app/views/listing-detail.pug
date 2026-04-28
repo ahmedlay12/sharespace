@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  .page
+    a.back(href='/listings') ← Back to Listings
+
+    .profile-card
+      h2= listing.title
+      p
+        strong Description: 
+        | #{listing.description}
+      p
+        strong Condition: 
+        | #{listing.condition}
+      p
+        strong Category: 
+        | #{listing.category_name}
+      p
+        strong Location: 
+        | #{listing.location}
+      p
+        strong Availability: 
+        span(class='status status-' + listing.availability)= listing.availability
+      p
+        strong Posted: 
+        | #{listing.posted}
+      p
+        strong Posted by: 
+        a.link(href='/users/' + listing.owner)= listing.user_name
+      p.muted #{requestCount} exchange request(s) submitted for this item.
+
+      if loggedInUser && loggedInUser.id != listing.owner
+        if listing.availability === 'available'
+          h2 Request Exchange
+          .form-card
+            form(method='POST' action='/request/' + listing.id)
+              .form-group
+                label Message
+                textarea(name='message' rows='3' required placeholder='Introduce yourself and arrange collection details...')
+              button.btn(type='submit') Submit Request
+      else if !loggedInUser
+        p.muted
+          a(href='/login') Login 
+          |  to submit an exchange request.
+
+    if matches.length
+      h2 Similar Listings
+      .grid
+        each item in matches
+          .item-card
+            h3= item.title
+            span(class='status status-' + item.availability)= item.availability
+            p Location: #{item.location}
+            p Posted by: #{item.user_name}
+            a.btn-small(href='/listings/' + item.id) View Listing

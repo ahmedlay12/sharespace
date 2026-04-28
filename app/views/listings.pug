@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .page
+    .page-header
+      h1 Listings
+      if loggedInUser
+        a.btn(href='/create-listing') + Add Listing
+
+    .search-bar
+      form(method='GET' action='/listings')
+        input(type='text' name='search' value=search placeholder='Search by item, category, or location')
+        button.btn(type='submit') Search
+
+    if data.length
+      .grid
+        each item in data
+          .item-card
+            h3= item.title
+            p= item.description
+            p.tags
+              span.tag= item.category_name
+              span.tag= item.condition
+            span(class='status status-' + item.availability)= item.availability
+            p Location: #{item.location}
+            p Posted: #{item.posted}
+            a.btn-small(href='/listings/' + item.id) View Listing
+    else
+      p.muted No listings found.

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .page
+    a.back(href='/categories') ← Back to Categories
+    h1= category.name
+    p.muted= category.description
+
+    if listings.length
+      .grid
+        each item in listings
+          .item-card
+            h3= item.title
+            p= item.description
+            p.tags
+              span.tag= item.condition
+            span(class='status status-' + item.availability)= item.availability
+            p Location: #{item.location}
+            p Posted by: #{item.user_name}
+            a.btn-small(href='/listings/' + item.id) View Listing
+    else
+      p.muted No listings in this category yet.

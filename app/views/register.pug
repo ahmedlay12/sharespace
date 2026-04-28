@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .page
+    .form-card
+      h1 Register
+      if error
+        p.error= error
+      form(method='POST' action='/register')
+        .form-group
+          label Full Name
+          input(type='text' name='name' required placeholder='Your full name')
+        .form-group
+          label Email
+          input(type='email' name='email' required placeholder='your@email.com')
+        .form-group
+          label Password
+          input(type='password' name='password' required placeholder='Choose a password')
+        .form-group
+          label University
+          input(type='text' name='uni' placeholder='e.g. University of Roehampton')
+        .form-group
+          label Location
+          input(type='text' name='location' placeholder='e.g. Barnes Area')
+        .form-group
+          label Bio
+          textarea(name='bio' rows='3' placeholder='Tell others a bit about yourself...')
+        button.btn(type='submit') Create Account
+      p.form-footer Already have an account?
+        a(href='/login') Login here

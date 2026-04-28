@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title ShareSpace
+    link(rel='stylesheet', href='/style.css')
+  body
+    nav
+      a.logo(href='/') ShareSpace
+      ul
+        li: a(href='/') Home
+        li: a(href='/categories') Categories
+        li: a(href='/listings') Listings
+        li: a(href='/users') Users
+        if loggedInUser
+          li: a(href='/create-listing') + Add Listing
+          li: a(href='/my-requests') My Requests
+          li: a(href='/users/' + loggedInUser.id) My Profile
+          li: a.nav-logout(href='/logout') Logout
+        else
+          li: a.nav-btn(href='/login') Login
+          li: a.nav-btn-outline(href='/register') Register
+
+    block content
+
+    footer
+      p © 2025 ShareSpace — University of Roehampton

@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  .page
+    h1 My Requests
+
+    h2 Requests I Sent
+    if sent.length
+      .table-wrap
+        table
+          thead
+            tr
+              th Item
+              th Owner
+              th Message
+              th Status
+          tbody
+            each r in sent
+              tr
+                td
+                  a.link(href='/listings/' + r.listing_id)= r.listing_title
+                td= r.owner_name
+                td= r.message
+                td
+                  span(class='status status-' + r.status)= r.status
+    else
+      p.muted You haven't sent any requests yet.
+
+    h2 Requests Received
+    if received.length
+      .table-wrap
+        table
+          thead
+            tr
+              th Item
+              th From
+              th Message
+              th Status
+          tbody
+            each r in received
+              tr
+                td
+                  a.link(href='/listings/' + r.listing_id)= r.listing_title
+                td= r.requester_name
+                td= r.message
+                td
+                  span(class='status status-' + r.status)= r.status
+    else
+      p.muted No requests received yet.

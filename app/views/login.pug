@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .page
+    .form-card
+      h1 Login
+      if error
+        p.error= error
+      form(method='POST' action='/login')
+        .form-group
+          label Email
+          input(type='email' name='email' required placeholder='your@sharespace.com')
+        .form-group
+          label Password
+          input(type='password' name='password' required placeholder='Your password')
+        button.btn(type='submit') Login
+      p.form-footer Don't have an account? 
+        a(href='/register') Register here

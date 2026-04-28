@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .page
+    .hero
+      h1 Share. Swap. Save.
+      p A community platform for Roehampton students to exchange items, reduce waste, and help each other out.
+      if loggedInUser
+        a.btn(href='/create-listing') + Post a Listing
+      else
+        .hero-btns
+          a.btn(href='/listings') Browse Listings
+          a.btn-outline(href='/register') Join ShareSpace
+
+    h2 Explore
+    .cards
+      a.card(href='/listings')
+        .card-icon 📦
+        h3 Listings
+        p Browse items students are giving away or looking to exchange.
+      a.card(href='/categories')
+        .card-icon 🏷️
+        h3 Categories
+        p Find items by type — books, electronics, kitchen essentials and more.
+      a.card(href='/users')
+        .card-icon 👥
+        h3 Students
+        p See who's on ShareSpace and check their ratings.

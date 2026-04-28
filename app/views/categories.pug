@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .page
+    h1 Categories
+    .grid
+      each cat in data
+        a.card(href='/categories/' + cat.id)
+          h3= cat.name
+          p= cat.description
+          p.muted #{cat.listing_count} listing(s)

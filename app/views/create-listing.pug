@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .page
+    a.back(href='/listings') ← Back to Listings
+    .form-card
+      h1 Post a Listing
+      form(method='POST' action='/create-listing')
+        .form-group
+          label Title
+          input(type='text' name='title' required placeholder='e.g. Calculus Textbook')
+        .form-group
+          label Description
+          textarea(name='description' rows='4' placeholder='Describe the item...')
+        .form-group
+          label Condition
+          select(name='condition')
+            option(value='New') New
+            option(value='Very Good') Very Good
+            option(value='Good') Good
+            option(value='Used') Used
+            option(value='Fair') Fair
+        .form-group
+          label Location
+          input(type='text' name='location' placeholder='e.g. Campus exchange point')
+        .form-group
+          label Category
+          select(name='category')
+            each cat in categories
+              option(value=cat.id)= cat.name
+        button.btn(type='submit') Post Listing

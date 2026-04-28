@@ -1,0 +1,75 @@
+extends layout
+
+block content
+  .page
+    a.back(href='/users') ← Back to Users
+
+    if user
+      .profile-card
+        h2= user.name
+        p
+          strong Email: 
+          | #{user.email}
+        p
+          strong University: 
+          | #{user.uni || 'University of Roehampton'}
+        p
+          strong Location: 
+          | #{user.location}
+        if user.avg_rating
+          p
+            strong Rating: 
+            span.stars ⭐ #{user.avg_rating} / 5 
+            span.muted (#{user.rating_count} reviews)
+        else
+          p.muted No ratings yet
+        if user.bio
+          p
+            strong Bio: 
+            | #{user.bio}
+
+      h2 My Listings
+      if listings.length
+        .grid
+          each item in listings
+            .item-card
+              h3= item.title
+              p.tags
+                span.tag= item.category_name
+                span.tag= item.condition
+              span(class='status status-' + item.availability)= item.availability
+              p Location: #{item.location}
+              p Posted: #{item.posted}
+              a.btn-small(href='/listings/' + item.id) View Listing
+      else
+        p.muted No listings yet.
+
+      h2 Reviews
+      if ratings.length
+        each r in ratings
+          .review-card
+            .review-header
+              span.review-name= r.reviewer_name
+              span.review-score ⭐ #{r.score}/5
+            p.review-comment= r.comment
+      else
+        p.muted No reviews yet.
+
+      if loggedInUser && loggedInUser.id != user.id
+        h2 Leave a Review
+        .form-card
+          form(method='POST' action='/rate/' + user.id)
+            .form-group
+              label Score
+              select(name='score')
+                option(value='5') ⭐⭐⭐⭐⭐ 5 — Excellent
+                option(value='4') ⭐⭐⭐⭐ 4 — Good
+                option(value='3') ⭐⭐⭐ 3 — Average
+                option(value='2') ⭐⭐ 2 — Poor
+                option(value='1') ⭐ 1 — Very Poor
+            .form-group
+              label Comment
+              textarea(name='comment' rows='3' placeholder='Tell others about your experience...')
+            button.btn(type='submit') Submit Review
+    else
+      p User not found.
