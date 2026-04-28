@@ -1,0 +1,25 @@
+extends layout
+
+block head
+  link(rel="stylesheet", href="/listings.css")
+
+block content
+  .main-content
+    h1 All Listings
+
+    table(border=1)
+      tr
+        th ID
+        th Title
+        th Description
+        th Condition
+        th Location
+
+      each item in data
+        tr
+          td #{item.id}
+          td 
+            a(href='/listings/' + item.id) #{item.title}
+          td #{item.description}
+          td #{item.item_condition}
+          td #{item.location}

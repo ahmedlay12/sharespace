@@ -1,0 +1,25 @@
+extends layout
+
+block head 
+    link(rel="stylesheet", href="/users.css")
+
+block content
+  .main-content
+    h1 All Users
+
+    table(border=1)
+      tr
+        th ID
+        th Name
+        th Email
+        th University
+        th Location
+
+      each item in data
+        tr
+          td #{item.id}
+          td 
+            a(href='/user/' + item.id) #{item.name}
+          td #{item.email}
+          td #{item.university}
+          td #{item.location}
