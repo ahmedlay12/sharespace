@@ -2,44 +2,42 @@ extends layout
 
 block content
   .page
-    a.back(href='/users') ← Back to Users
+    a.back(href='/users') &larr; Back to Users
 
     if user
       .profile-card
-        h2= user.name
-        p
-          strong Email: 
-          | #{user.email}
-        p
-          strong University: 
-          | #{user.uni || 'University of Roehampton'}
-        p
-          strong Location: 
-          | #{user.location}
-        if user.avg_rating
-          p
-            strong Rating: 
-            span.stars ⭐ #{user.avg_rating} / 5 
-            span.muted (#{user.rating_count} reviews)
-        else
-          p.muted No ratings yet
-        if user.bio
-          p
-            strong Bio: 
-            | #{user.bio}
+        .profile-header-row
+          div
+            h2= user.name
+            p
+              strong University:&nbsp;
+              | #{user.uni || 'University of Roehampton'}
+            p
+              strong Location:&nbsp;
+              | #{user.location}
+            if user.avg_rating
+              p.rating
+                strong Rating:&nbsp;
+                span.stars ★ #{user.avg_rating} / 5&nbsp;
+                span.muted (#{user.rating_count} reviews)
+            else
+              p.muted No ratings yet
+            if user.bio
+              p.bio-preview= user.bio
+          if loggedInUser && loggedInUser.id != user.id
+            a.btn(href='/messages/' + user.id) Message #{user.name}
 
-      h2 My Listings
+      h2 Listings
       if listings.length
         .grid
           each item in listings
             .item-card
               h3= item.title
-              p.tags
+              .tags
                 span.tag= item.category_name
                 span.tag= item.condition
               span(class='status status-' + item.availability)= item.availability
-              p Location: #{item.location}
-              p Posted: #{item.posted}
+              p.meta Location: #{item.location}
               a.btn-small(href='/listings/' + item.id) View Listing
       else
         p.muted No listings yet.
@@ -50,7 +48,7 @@ block content
           .review-card
             .review-header
               span.review-name= r.reviewer_name
-              span.review-score ⭐ #{r.score}/5
+              span.review-score ★ #{r.score}/5
             p.review-comment= r.comment
       else
         p.muted No reviews yet.
@@ -62,11 +60,11 @@ block content
             .form-group
               label Score
               select(name='score')
-                option(value='5') ⭐⭐⭐⭐⭐ 5 — Excellent
-                option(value='4') ⭐⭐⭐⭐ 4 — Good
-                option(value='3') ⭐⭐⭐ 3 — Average
-                option(value='2') ⭐⭐ 2 — Poor
-                option(value='1') ⭐ 1 — Very Poor
+                option(value='5') 5 — Excellent
+                option(value='4') 4 — Good
+                option(value='3') 3 — Average
+                option(value='2') 2 — Poor
+                option(value='1') 1 — Very Poor
             .form-group
               label Comment
               textarea(name='comment' rows='3' placeholder='Tell others about your experience...')

@@ -143,3 +143,26 @@ a.link:hover { text-decoration: underline; }
 .back:hover { color: var(--green); }
 
 footer { text-align: center; padding: 28px; color: var(--muted); font-size: 0.83rem; margin-top: 60px; border-top: 1px solid var(--border); }
+
+/* ── NAV BADGE ── */
+.badge { background: #dc2626; color: white; border-radius: 50%; padding: 1px 6px; font-size: 0.7rem; font-weight: 700; margin-left: 5px; display: inline-block; }
+.badge-inline { background: var(--green); color: white; border-radius: 10px; padding: 1px 8px; font-size: 0.73rem; font-weight: 600; margin-left: 8px; }
+.bold-msg { font-weight: 600; }
+
+/* ── CARD ICON SVG ── */
+.card-icon { margin-bottom: 12px; color: var(--green); }
+.card-icon svg { display: block; }
+
+/* ── CHAT ── */
+.chat-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; min-height: 200px; max-height: 480px; overflow-y: auto; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px; }
+.chat-bubble { max-width: 65%; padding: 10px 14px; border-radius: 12px; }
+.chat-mine { align-self: flex-end; background: var(--green); color: white; border-bottom-right-radius: 3px; }
+.chat-theirs { align-self: flex-start; background: var(--green-pale); color: var(--text); border-bottom-left-radius: 3px; }
+.chat-name { font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; opacity: 0.75; }
+.chat-content { font-size: 0.9rem; line-height: 1.5; }
+.chat-form .chat-input-row { display: flex; gap: 10px; }
+.chat-form input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; font-family: inherit; }
+.chat-form input:focus { outline: none; border-color: var(--green); }
+
+/* ── PROFILE HEADER ROW ── */
+.profile-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }

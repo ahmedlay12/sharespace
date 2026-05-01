@@ -1,28 +1,29 @@
 doctype html
-html(lang='en')
+html(lang="en")
   head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title ShareSpace
-    link(rel='stylesheet', href='/style.css')
+    link(rel="stylesheet" href="/style.css")
   body
     nav
       a.logo(href='/') ShareSpace
       ul
-        li: a(href='/') Home
-        li: a(href='/categories') Categories
         li: a(href='/listings') Listings
-        li: a(href='/users') Users
+        li: a(href='/categories') Categories
+        li: a(href='/users') Students
         if loggedInUser
-          li: a(href='/create-listing') + Add Listing
+          li
+            a(href='/messages')
+              | Messages
+              if unreadCount > 0
+                span.badge #{unreadCount}
           li: a(href='/my-requests') My Requests
-          li: a(href='/users/' + loggedInUser.id) My Profile
-          li: a.nav-logout(href='/logout') Logout
+          li: a(href='/create-listing' class='nav-btn') + Post Item
+          li: a(href='/logout' class='nav-logout') Logout
         else
-          li: a.nav-btn(href='/login') Login
-          li: a.nav-btn-outline(href='/register') Register
-
+          li: a(href='/login' class='nav-btn-outline') Login
+          li: a(href='/register' class='nav-btn') Register
     block content
-
     footer
-      p © 2025 ShareSpace — University of Roehampton
+      p &copy; 2026 ShareSpace &mdash; University of Roehampton

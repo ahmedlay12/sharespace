@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .page
+    .page-header
+      h1 Messages
+    if conversations.length === 0
+      p.muted You have no messages yet. Visit a student profile to start a conversation.
+    else
+      .table-wrap
+        table
+          thead
+            tr
+              th Student
+              th Last Message
+              th
+          tbody
+            each c in conversations
+              tr
+                td
+                  a.link(href='/users/' + c.other_id) #{c.other_name}
+                td
+                  span(class=c.unread > 0 ? 'bold-msg' : '') #{c.last_message.length > 60 ? c.last_message.substring(0,60) + '...' : c.last_message}
+                  if c.unread > 0
+                    span.badge-inline #{c.unread} new
+                td: a.btn-small(href='/messages/' + c.other_id) Open
